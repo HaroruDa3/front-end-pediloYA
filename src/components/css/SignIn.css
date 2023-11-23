@@ -1,3 +1,23 @@
+textarea, input:focus {
+    outline: none;
+}
+h3{
+    color: #757575;
+    z-index: 2; /* Hace que el h3 esté en una capa superior */
+    
+}
+#arrow-back {
+    position: absolute;
+    z-index: 1;
+    max-height: 6vh;
+    margin-left: 10px;
+    transition: max-height 0.3s ease-in-out; /* Agrega una transición para suavizar el cambio de tamaño */
+}
+
+#arrow-back:hover {
+    cursor: pointer;
+    max-height: 7vh; /* Cambia el tamaño cuando el mouse está sobre el elemento */
+}
 #bk {
     position: fixed;
     width: 100%;
@@ -5,7 +25,9 @@
     background: linear-gradient(rgb(250, 0, 80) 50%, white 50%);
     z-index: -1; /* Asegura que el fondo esté detrás del contenido */
 }
-
+#regresar{
+    width: 100%;
+}
 #div-login {
     position: relative;
     z-index: 1; /* Asegura que el contenido esté encima del fondo */
@@ -16,38 +38,40 @@
     justify-content: center;
     align-items: center;
 }
-
-#form-signin {
-    background-color: rgba(255, 255, 255, 0.958);
-    height: 75%;
-    width: 40%;
-    padding: 30px;
-    border-radius: 10px;
-    overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+#div-formulario{
+    background-color: white;
+    height: 85%;
+    width: 45%;
+    border-radius:10px;
+    padding: 20px;
+    overflow: auto; /* Agrega la barra de desplazamiento automáticamente cuando sea necesario */
 }
-
-#form-signin > p {
-    font-size: 14px;
-    font-weight: 500;
+#div-arrow{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
 }
-
-#enlace:hover {
-    cursor: pointer;
+#div-formulario::-webkit-scrollbar {
+    width: 8px; /* Ancho de la barra de desplazamiento */
 }
-
-.input-login {
+#div-formulario::-webkit-scrollbar-thumb  {
+     /* Color de la pista de la barra de desplazamiento */
+    /*background-color: #EA044E;*/
+     background-color:#4FC3C3;
+     border-radius: 0px 15px 15px 0px;
+}
+.input-login{
     border: 0;
     width: 90%;
     font-size: 16px;
     font-weight: bold;
-    color: rgb(169, 177, 183);
+    color: #757575;
 }
 
-input:focus {
-    outline: none;
-}
-
-.div-input {
+.div-input{
     border-bottom: 1.7px solid #c6c6c6;
     padding: 10px;
+    margin-bottom:10px;
 }
+

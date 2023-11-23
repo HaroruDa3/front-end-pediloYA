@@ -1,3 +1,9 @@
+
+h3,p{
+    color: #757575;
+}
+
+
 #bk{
     position: fixed;
     width: 100%;
@@ -42,7 +48,7 @@
     width: 90%;
     font-size: 16px;
     font-weight: bold;
-    color: rgb(169, 177, 183);
+    color: #757575;
 }
 input:focus {
     outline: none;
@@ -50,5 +56,6 @@ input:focus {
 
 .div-input{
     border-bottom: 1.7px solid #c6c6c6;
+    margin-bottom: 10px;
     padding: 10px;
 }

@@ -1,63 +1,70 @@
 import React from 'react';
 import './css/SignIn.css';
 import { useNavigate } from 'react-router-dom';
+import ArrowBack from '../assets/arrow-back.png'
 
 export const SignIn = () => {
-  const navigate = useNavigate();
+  const navegar = useNavigate();
 
-  const handleSignUp = () => {
-    navigate('/');
+  const LogIn = () => {
+    navegar('/');
   };
 
   return (
     <>
       <section id='bk'>
+        
         <div id='div-login'>
-          <div id='form-signup'>
-            <h3 className='text-center fw-bold mt-4'>Registrarme</h3>
-            <p className='mt-5 mb-3 f'>Ingresa tus datos:</p>
-            <form>
-              <div className='mb-3'>
-                <label htmlFor='nombre' className='form-label'>Nombre</label>
-                <input type='text' className='form-control' id='nombre' required />
+          <div id='div-formulario'>
+            <div className='d-flex mt-3 mb-3'>
+              <div id='div-arrow'>
+                <img id='arrow-back' src={ArrowBack} onClick={LogIn} alt="" />
               </div>
-              <div className='mb-3'>
-                <label htmlFor='correo' className='form-label'>Correo Electrónico</label>
-                <input type='email' className='form-control' id='correo' required />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='rol' className='form-label'>Rol</label>
-                <select className='form-select' id='rol' required>
-                  <option value='' disabled defaultValue>Seleccione un Rol</option>
-                  <option value='cliente'>Cliente</option>
-                  <option value='repartidor'>Repartidor</option>
-                  <option value='restaurante'>Restaurante</option>
-                  <option value='administrador'>Administrador</option>
-                </select>
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='contrasena' className='form-label'>Contraseña</label>
-                <input type='password' className='form-control' id='contrasena' required />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='departamento' className='form-label'>Departamento</label>
-                <input type='text' className='form-control' id='departamento' />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='ciudad' className='form-label'>Ciudad</label>
-                <input type='text' className='form-control' id='ciudad' />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='colonia' className='form-label'>Colonia</label>
-                <input type='text' className='form-control' id='colonia' />
-              </div>
-              <div className='mb-3'>
-                <label htmlFor='referencia' className='form-label'>Referencia</label>
-                <input type='text' className='form-control' id='referencia' />
-              </div>
-              <button type='button' className='btn btn-danger w-100' onClick={handleSignUp}>Registrarme</button>
-            </form>
-            <p id='enlace' onClick={() => navigate('/')} className='text-center mt-4'>Iniciar Sesión</p>
+              <div className='w-100'>
+                <h3  className='text-center'>Registrarme</h3>
+              </div>  
+            </div>
+            <div className='div-input'>
+              <input className='input-login' placeholder='Ingresa tu nombre' type="text" name="nombre" id="nombre" required/>
+            </div>
+            <div className='div-input'>
+              <input className='input-login' placeholder='Correo Electronico' type="email" name="email" id="email" required/>
+            </div>
+            <div className='div-input'>
+              <input className='input-login' placeholder='Contraseña' type="password" name="pass" id="pass" required/>
+            </div>
+            <div className='div-input'>
+              <input className='input-login' placeholder='Confirmar Contraseña' type="password" name="passConfirm" id="passConfirm" required/>
+            </div>
+            <div className='div-input'>
+              <select className='input-login w-100' name="rol" id="rol">
+                <option value="" selected disabled>Quien eres?</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Transportista">Transportista</option>
+                <option value="Restaurante">Restaurante</option>
+              </select>
+            </div>
+            <div className='div-input'>
+              <select className='input-login w-100' name="departamento" id="departamento">
+                <option value="" selected disabled>Departamento</option>
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+              </select>
+            </div>
+            <div className='div-input'>
+              <select className='input-login w-100' name="ciudad" id="ciudad">
+                <option value="" selected disabled>Ciudad</option>
+                <option value="opcion1">Opción 1</option>
+                <option value="opcion2">Opción 2</option>
+              </select>
+            </div>
+            <div className='div-input'>
+              <textarea className='input-login' name="direccion" id="direccion" cols="30" rows="5" placeholder='Escriba su direccion'></textarea>
+            </div>
+           
+            <div className='w-100 mt-5'>
+                    <button onClick={LogIn} className='btn btn-danger w-100' type='button'>Registrarme</button>
+                </div>
           </div>
         </div>
       </section>

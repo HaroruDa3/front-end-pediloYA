@@ -9,6 +9,9 @@ const navegar = useNavigate();
   const singIn = ()=>{
     navegar('/signIn');
   }
+  const inicio = () =>{
+    navegar('/pediloYa')
+  }
   return (
    <>
     <section id='bk'>
@@ -25,7 +28,7 @@ const navegar = useNavigate();
                     </div>
                 </div>
                 <div className='w-100 mt-5'>
-                    <button className='btn btn-danger w-100' type='button'>Acceder</button>
+                    <button className='btn btn-danger w-100' onClick={inicio} type='button'>Acceder</button>
                 </div>
                 <p id='enlace' onClick={singIn} className='text-center mt-4'>Registrarme</p>
             </div>

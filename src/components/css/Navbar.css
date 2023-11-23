@@ -1,0 +1,48 @@
+nav{
+    max-height: 13vh;
+    border-bottom: 1px solid rgb(164, 159, 159);
+}
+img{
+    max-height: 13vh;
+    padding: 7px;
+    border-radius: 15px!important;
+}
+img:hover{
+    cursor: pointer;
+}
+p{
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+}
+p:hover{
+    cursor: pointer;
+}
+.div-op-nav{
+    margin-right: 10vh;
+}
+.nav-item.dropdown {
+    margin-right: 10px!important;
+}
+.dropdown-menu{
+    min-width: 70%!important;
+    --bs-dropdown-min-width:  70%!important;
+}
+#opciones-navbar{
+    margin-right: 50px;
+    display: flex;
+    height: 13vh;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+#info-entrega{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    max-width: 50vh; 
+    margin-left: 10px;
+}
+#info-entrega>span{
+    max-height: 70%;
+}
