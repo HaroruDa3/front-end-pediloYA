@@ -1,0 +1,53 @@
+#bk {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgb(250, 0, 80) 50%, white 50%);
+    z-index: -1; /* Asegura que el fondo esté detrás del contenido */
+}
+
+#div-login {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté encima del fondo */
+    background-color: rgba(65, 61, 75, 0.75);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-signin {
+    background-color: rgba(255, 255, 255, 0.958);
+    height: 75%;
+    width: 40%;
+    padding: 30px;
+    border-radius: 10px;
+    overflow-y: auto; /* Habilita el scroll vertical si es necesario */
+}
+
+#form-signin > p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+#enlace:hover {
+    cursor: pointer;
+}
+
+.input-login {
+    border: 0;
+    width: 90%;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(169, 177, 183);
+}
+
+input:focus {
+    outline: none;
+}
+
+.div-input {
+    border-bottom: 1.7px solid #c6c6c6;
+    padding: 10px;
+}
