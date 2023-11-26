@@ -7,7 +7,6 @@ import IconRepartidor from './img/icono-repartidor.png'
 import IconLista from './img/icono-listas.png'
 
 export const MainPage = () => {
-
   return (
     <>
     <Navbar/>
