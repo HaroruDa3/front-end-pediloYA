@@ -5,6 +5,7 @@ import IconMeals from './img/icono-comida.png'
 import IconRestaurante from './img/icono-restaurante.png'
 import IconRepartidor from './img/icono-repartidor.png'
 import IconLista from './img/icono-listas.png'
+import { ListaProductos } from './ListaProductos';
 
 export const MainPage = () => {
   return (
@@ -29,6 +30,9 @@ export const MainPage = () => {
                 <img src={IconLista} alt="" />
             </div>
         </div>
+    </section>
+    <section className='mt-5'>
+        <ListaProductos/>
     </section>
     </>
   )
