@@ -16,15 +16,15 @@ export const ListaProductos = () => {
                         <p name='precio' className='fw-bold'>Precio: 150lps</p>
                         <div className='w-100 d-flex h-5 mb-3'>
                             <div className='w-25 p-1'>
-                                <button type="button" className='btn btn-danger w-100 h-100 d-flex align-items-center'>
-                                    <i class="fas fa-plus"></i>
+                                <button type="button" className='btn btn-danger w-100 h-100 d-flex justify-content-center'>
+                                    <i class=" fas fa-plus"></i>
                                 </button>
                             </div>
                             <div className='w-50 p-1'>
-                                <input className='w-100 h-100  form-control ' type="number" />
+                                <input className='w-100 h-100 form-control text-center' type="number" />
                             </div>
                             <div className='w-25 p-1'>
-                                <button type="button" className='btn btn-danger w-100 h-100 d-flex align-items-center'>
+                                <button type="button" className='btn btn-danger w-100 h-100 d-flex justify-content-center'>
                                     <i class="fas fa-minus"></i>
                                 </button>
                             </div>

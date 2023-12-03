@@ -1,0 +1,52 @@
+
+#barra-Opciones{
+    width: 25vh;
+    height: 100vh;
+    background-color: aliceblue;
+}
+#renderOpciones{
+    width: 100%;
+    height: auto;
+}
+#info{
+    height: 25vh;
+}
+
+#div-opciones-admin{
+    margin-top: 0!important;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#cerrarSesion{
+    background-color: rgb(238, 47, 65);
+    color:white;
+}
+.opciones-admin{
+    font-weight: bold;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    width: 12vh;
+    flex-direction: column;
+    background-color: #00A9A5;
+    border: solid 2px black;
+    border-radius: 10px;
+}
+.opciones-admin>img{
+    width: 50%;
+}
+.opciones-admin:hover{
+    cursor: pointer;
+    box-shadow:  6px 5px 15px 1px gray;
+}
+
+
+@media (max-height: 715px) {
+    .opciones-admin {
+        width: 15vh;
+        font-size: 0.55rem;
+    }
+}

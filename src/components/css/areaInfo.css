@@ -1,0 +1,40 @@
+.contenedor{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 75px 75px 15px 75px;
+}
+
+.encabezado{
+    background-color: aliceblue;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5vh;
+}
+.encabezado>div{
+    border-left: solid 2px ;
+}
+.encabezado>div:hover{
+    cursor: pointer;
+    background-color: rgb(238, 47, 65);
+    border-radius: 0px 10px 10px 0px;
+}
+.encabezado>div>button:hover{
+
+    color: white;
+}
+.card-info{
+   height:25vh;
+   margin-bottom: 20px;
+}
+#cuerpo-card{
+    padding: 10px;
+    border: solid 1px gray;
+    border-radius: 10px;
+    background-color: aliceblue;
+}
