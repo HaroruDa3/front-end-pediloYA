@@ -29,7 +29,13 @@ export const Login = () => {
         try {
             // Realizar una solicitud POST con Axios
             const response = await axios.post(url, dataLogin);
-            navegar('/pediloYa');
+            console.log(response.data);
+            if(response.data.rol=='Cliente'){
+              navegar('/pediloYa');
+            } else if(response.data.rol=='admin'){
+              navegar('/admin');
+            }
+           
         } catch (error) {
             Swal.fire({
                 title: error.response.data.message,

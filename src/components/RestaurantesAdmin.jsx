@@ -139,7 +139,7 @@ export const RestaurantesAdmin = () => {
           showConfirmButton: true
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload();
+            obtenerRestaurantes();
           }
         });
       }else{
