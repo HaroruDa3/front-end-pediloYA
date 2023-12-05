@@ -38,3 +38,12 @@
     border-radius: 10px;
     background-color: aliceblue;
 }
+.cuerpo-card {
+    padding: 10px;
+    border: solid 1px gray;
+    border-radius: 10px;
+    background-color: aliceblue;
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 20px;
+}

@@ -9,6 +9,7 @@ import IconRepartidor from './img/icono-repartidor.png'
 import IconLista from './img/icono-listas.png'
 import IconPedidos from './img/icono-pedidos.png'
 import IconLogOut from './img/icono-cerrar-sesion.png'
+import { Pedidos } from './pedidos';
 
 export const Admin = () => {
     const [opcionSeleccionada, setOpcionSeleccionada] = useState();
@@ -31,6 +32,8 @@ export const Admin = () => {
           return <RestaurantesAdmin />;
         case 'repartidores':
           return <Repartidores />;
+        case 'pedidos':
+          return <Pedidos />;
         default:
           return null;
       }
