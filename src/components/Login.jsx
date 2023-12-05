@@ -31,8 +31,12 @@ export const Login = () => {
             const response = await axios.post(url, dataLogin);
             console.log(response.data);
             if(response.data.rol=='Cliente'){
+              localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
+              localStorage.setItem('id', response.data.id)
               navegar('/pediloYa');
             } else if(response.data.rol=='admin'){
+              localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
+              localStorage.setItem('id', response.data.id)
               navegar('/admin');
             }
            
