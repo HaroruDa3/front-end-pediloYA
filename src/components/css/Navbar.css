@@ -29,7 +29,7 @@ p:hover{
     --bs-dropdown-min-width:  70%!important;
 }
 #opciones-navbar{
-    margin-right: 50px;
+    margin-right: 0px;
     display: flex;
     height: 13vh;
     align-items: center;
@@ -45,4 +45,12 @@ p:hover{
 }
 #info-entrega>span{
     max-height: 70%;
+}
+.profile{
+    padding: 0px;
+    width: 50px;
+}
+.dropdown-menu[data-bs-popper]{
+    top: 70% !important;
+    left: -75px !important;
 }
