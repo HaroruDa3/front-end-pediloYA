@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import hamburguesa from './img/burguer.jpg';
+import carrito from './img/car-wb.png'
 import './css/cards.css';
 
 export const ListaProductos = () => {
@@ -43,11 +44,40 @@ export const ListaProductos = () => {
 
 
   const agregarCarrito = (id) => {
-    console.log(`Producto ID: ${id}, Cantidad: ${cantidades[id]}`);
-    const producto = productos.find(p => p.producto_id == id);
-    console.log('Producto seleccionado:', producto);
-    // Aquí puedes realizar las acciones necesarias con el producto y la cantidad.
-  };
+    // Verificar si existe la clave 'carrito' en el Local Storage
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Buscar el producto en el carrito por su ID
+    const productoEnCarrito = carrito.find(item => item.id === id);
+
+    // Obtener la cantidad actual del producto o establecerla en 0 si no existe
+    const cantidadExistente = productoEnCarrito ? productoEnCarrito.cantidad : 0;
+
+    // Buscar el producto en la lista general de productos
+    const producto = productos.find(p => p.producto_id === id);
+
+    // Crear el objeto de producto a agregar al carrito
+    const nuevoProducto = {
+        id: producto.producto_id,
+        nombre: producto.producto_nombre,
+        precio: producto.precio,
+        cantidad: cantidadExistente + cantidades[id] // Sumar la cantidad existente con la nueva cantidad
+    };
+
+    if (productoEnCarrito) {
+        // Si el producto ya está en el carrito, actualizar su cantidad
+        carrito = carrito.map(item => (item.id === id ? nuevoProducto : item));
+    } else {
+        // Si el producto no está en el carrito, agregarlo
+        carrito.push(nuevoProducto);
+    }
+
+    // Guardar el carrito actualizado en el Local Storage
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+
+    console.log(`Producto ID: ${id}, Cantidad: ${nuevoProducto.cantidad}`);
+    console.log('Producto seleccionado:', nuevoProducto);
+};
 
   return (
     <>
@@ -91,7 +121,40 @@ export const ListaProductos = () => {
             </div>
           ))}
         </div>
+
+        <button aria-label="carrito"  className="btn btn-flotante" data-bs-toggle="modal" data-bs-target="#carritoModal"> 
+          <img src={carrito} className="img-btn-flotante" alt=""/>
+        </button>
       </div>
+
+
+      {/*---------------------Modal Carrito---------------*/}
+
+    <div className="modal fade" id="carritoModal" tabIndex="-1" aria-labelledby="exampleModalCenteredScrollable" aria-hidden="true">
+        <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+            <div className="modal-content">
+                <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalCenteredScrollable">Carrito de compras</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div className="modal-body" id="productosCarrito">
+                  <div className='card-carrito'>
+                    <div className='w-'></div>
+                    <div></div>
+                  </div>
+                    
+                
+                </div>
+    {/*---------------------Aqui se renderizan la suma y el boton del local Storage---------------*/}
+                <div className="modal-footer justify-content-between">
+                <div id="totalPagar" className="d-flex align-content-center">
+                </div>
+                <button  id="btn-pagar" type="button" className="btn btn-primary">Pagar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     </>
   );
 };
