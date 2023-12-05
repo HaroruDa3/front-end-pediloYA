@@ -109,7 +109,8 @@ export const ListaProductos = () => {
         const pedidosxproductosData = carrito.map(async (producto) => {
           const pedidoXProductoData = {
             pedido_id: pedido_id,
-            producto_id: producto.id
+            producto_id: producto.id,
+            cantidad: producto.cantidad
           };
   
           try {

@@ -1,24 +1,42 @@
 import './css/Navbar.css';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Logo from '/public/icono-pedidosYA!.jpg';
+import OptionIcon from '/public/option-icon.png'; 
 import { useNavigate } from 'react-router-dom';
 
+export const Navbar = () => {
+  const [ubicacion, setUbicaion] = useState('');
 
-export const Navbar =() => {
+  useEffect(() => {
+    const infoUsuario = async () => {
+      try {
+        const url = `http://localhost:8080/api/v1/usuarios/${parseInt(localStorage.getItem('id'))}`;
+        const response = await axios.get(url);
+     
+        setUbicaion(response.data.direccion || ''); 
+      } catch (error) {
+        console.error('Error al obtener información del usuario:', error);
+
+      }
+    };
+
+    infoUsuario();
+  }, []);
+
   const navegar = useNavigate();
-  let profile  = localStorage.getItem('profile');
+  let profile = localStorage.getItem('profile');
+
   const cerrarSesion = () => {
     navegar('/');
   };
+
   const cambiarProfile = () => {
-    // Obtener el input file
     const inputFile = document.getElementById('inputFile');
 
-    // Crear un objeto FormData para enviar la imagen
     const formData = new FormData();
     formData.append('imagen', inputFile.files[0]);
 
-    // Realizar la solicitud POST al servidor con Axios
     axios.post(`http://localhost:8080/api/v1/usuarios/${localStorage.getItem('id')}/cargar-imagen`, formData)
       .then(response => {
         console.log('Imagen cargada exitosamente', response.data);
@@ -26,38 +44,61 @@ export const Navbar =() => {
       })
       .catch(error => {
         console.error('Error al cargar la imagen', error);
-        // Manejar el error según tus necesidades
       });
   };
+
   return (
-  <>
-<nav className="navbar navbar-expand-lg bg-body-tertiary p-0">
-  <div className="container-fluid">
-    <div className='d-flex' >
-      <img src={Logo} alt="" />
-      <div id='info-entrega'>
-        <span>Enviar a: </span>
-        <span>Col. Trapiche, Una cuadra adelante de Coperativa Sagrada Familia</span>
+    <>
+      <nav className="navbar navbar-expand-lg bg-body-tertiary p-0">
+        <div className="container-fluid">
+          <div className='d-flex' >
+            <img src={Logo} alt="" />
+            <div id='info-entrega'>
+              <span>Enviar a: </span>
+              <span>{ubicacion}</span>
+            </div>
+          </div>
+          <div id='opciones-navbar'>
+            <div>
+              <p>Inicio</p>
+            </div>
+            <div className='h-75'>
+              <img className='h-100' src={OptionIcon} alt="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div className="modal-dialog modal-dialog-centered">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h1 className="modal-title fs-5" id="staticBackdropLabel">Opciones</h1>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    </div>
-    <div id='opciones-navbar'>
-      <div className='div-op-nav'>
-        <p>Inicio</p>
+      <div className="modal-body">
+        <h5 className='text-center fw-bold mb-3'>UserName</h5>
+        <div className='img-div'>
+            <div>
+              <img src={`http://localhost:8080/uploads/profile/${profile}`} alt="" />
+            </div>
+        </div>
+        <label className='mx-2 mb-1'>Cambiar Imagen de perfil</label>
+        <input className='form-control mb-2' type="file" id="inputFile" accept="image/*" />
+        <div className='w-100 d-flex justify-content-center mb-5'>
+          <button className='btn btn-success' onClick={cambiarProfile}>Cambiar imagen de perfil</button>
+        </div>
+        <div className='w-100 d-flex justify-content-center'>
+            <button className='btn btn-danger' onClick={cerrarSesion} type="button">Cerrar Sesion</button>
+        </div>
       </div>
-      <div  className="nav-item dropdown">
-        <p className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <img className='profile' src={`http://localhost:8080/uploads/profile/${profile}`} alt="" />
-        </p>
-        <ul className="dropdown-menu">
-        <input type="file" id="inputFile" accept="image/*" />
-          <button onClick={cambiarProfile}>Cambiar Profile</button>
-          <li><p className="dropdown-item" onClick={cerrarSesion} >Cerrar Sesion</p></li>
-        </ul>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</nav>
-
-  </>
-  )
-}
+</div>
+    </>
+  );
+};
