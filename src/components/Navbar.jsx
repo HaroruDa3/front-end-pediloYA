@@ -7,17 +7,18 @@ import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const [ubicacion, setUbicaion] = useState('');
+  const [nameUsuario, setnameUsuario] = useState('');
 
   useEffect(() => {
     const infoUsuario = async () => {
       try {
         const url = `http://localhost:8080/api/v1/usuarios/${parseInt(localStorage.getItem('id'))}`;
         const response = await axios.get(url);
-     
-        setUbicaion(response.data.direccion || ''); 
+        
+        setUbicaion(response.data.direccion || '');
+        setnameUsuario(response.data.nombre_Completo ||'') 
       } catch (error) {
         console.error('Error al obtener información del usuario:', error);
-
       }
     };
 
@@ -28,7 +29,10 @@ export const Navbar = () => {
   let profile = localStorage.getItem('profile');
 
   const cerrarSesion = () => {
+    localStorage.removeItem('id');
+    localStorage.removeItem('carrito');
     navegar('/');
+    window.location.reload();
   };
 
   const cambiarProfile = () => {
@@ -70,7 +74,7 @@ export const Navbar = () => {
       </nav>
 
 
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered">
     <div className="modal-content">
       <div className="modal-header">
@@ -78,10 +82,10 @@ export const Navbar = () => {
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
-        <h5 className='text-center fw-bold mb-3'>UserName</h5>
+        <h5 className='text-center fw-bold mb-3'>{nameUsuario}</h5>
         <div className='img-div'>
             <div>
-              <img src={`http://localhost:8080/uploads/profile/${profile}`} alt="" />
+              <img className='img-modal' src={`http://localhost:8080/uploads/profile/${profile}`} alt="" />
             </div>
         </div>
         <label className='mx-2 mb-1'>Cambiar Imagen de perfil</label>

@@ -19,7 +19,6 @@ export const Login = () => {
   };
 
   const inicio = async () => {
-    // Validar que los campos no estén vacíos
     if (!dataLogin.correoElectronico || !dataLogin.contrasenia) {
         Swal.fire({
             title: 'Debe de completar los campos',
@@ -27,9 +26,7 @@ export const Login = () => {
         });
     }else{
         try {
-            // Realizar una solicitud POST con Axios
             const response = await axios.post(url, dataLogin);
-            console.log(response.data);
             if(response.data.rol=='Cliente'){
               localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
               localStorage.setItem('id', response.data.id)
@@ -49,8 +46,6 @@ export const Login = () => {
     }
    
 };
-
-  // Función para manejar cambios en los input
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setDataLogin({

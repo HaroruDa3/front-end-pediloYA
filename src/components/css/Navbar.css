@@ -28,6 +28,11 @@ p:hover{
     min-width: 70%!important;
     --bs-dropdown-min-width:  70%!important;
 }
+.img-modal{
+    max-height: 100%;
+    width: 100%;
+
+}
 #opciones-navbar{
     margin-right: 0px;
     display: flex;

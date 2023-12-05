@@ -16,7 +16,6 @@ export const RestaurantesAdmin = () => {
     referencia: '',
   });
 
-  // Estado local para forzar la actualización del componente
   const [, forceUpdate] = useState();
 
   useEffect(() => {
@@ -27,7 +26,7 @@ export const RestaurantesAdmin = () => {
           response.data.map(async (restaurante) => {
             const coloniaId = restaurante.direccion;
             const coloniaResponse = await axios.get(`http://localhost:8080/api/v1/colonias/${coloniaId}`);
-            return { ...restaurante, direccion: coloniaResponse.data.referencia };
+            return { ...restaurante, direccion: ( coloniaResponse.data.colonia_nombre +', '+ coloniaResponse.data.referencia )};
           })
         );
 
@@ -38,7 +37,7 @@ export const RestaurantesAdmin = () => {
     };
 
     obtenerRestaurantes();
-  }, [forceUpdate]); // Agregado forceUpdate al arreglo de dependencias
+  }, [forceUpdate]); 
 
   const handleEliminarRestaurante = async (id) => {
     try {
@@ -50,14 +49,12 @@ export const RestaurantesAdmin = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           await axios.delete(`http://localhost:8080/api/v1/restaurantes/${id}`);
+          const nuevosRestaurantes = restaurantes.filter(restaurante => restaurante.restaurante_id !== id);
+          setRestaurantes(nuevosRestaurantes);
+
           Swal.fire({
             title: 'Restaurante eliminado',
             showConfirmButton: true
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Forzar la actualización del componente
-              forceUpdate({});
-            }
           });
         } else if (result.isDenied) {
           Swal.fire('Operacion cancelada', '', 'info');
@@ -109,15 +106,35 @@ export const RestaurantesAdmin = () => {
   };
 
   const handleRegistro = async () => {
-    event.preventDefault();
-
-    const dataColonia = {
-      "colonia_nombre": registro.colonia_nombre,
-      "referencia": registro.referencia,
-      "ciudad_id": registro.ciudad_id
-    };
-
     try {
+      const contrasenia = registro.contrasenia;
+      const confirmaContrasenia = document.getElementById('confirmaContrasenia').value;
+
+      if (contrasenia !== confirmaContrasenia) {
+        Swal.fire({
+          title: 'Las contraseñas no coinciden',
+          icon: 'error',
+          showConfirmButton: true,
+        });
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(registro.correo_electronico)) {
+        Swal.fire({
+          title: 'Formato de correo electrónico no válido',
+          icon: 'error',
+          showConfirmButton: true,
+        });
+        return;
+      }
+
+      const dataColonia = {
+        "colonia_nombre": registro.colonia_nombre,
+        "referencia": registro.referencia,
+        "ciudad_id": registro.ciudad_id
+      };
+
       const response1 = await axios.post('http://localhost:8080/api/v1/colonias', dataColonia);
 
       const data = {
@@ -132,8 +149,8 @@ export const RestaurantesAdmin = () => {
       const response = await axios.post('http://localhost:8080/api/v1/restaurantes', data);
 
       if (response.status === 200) {
-        // Forzar la actualización del componente
-        forceUpdate({});
+        const nuevosRestaurantes = [...restaurantes, response.data];
+        setRestaurantes(nuevosRestaurantes);
         
         Swal.fire({
           title: 'REGISTRO EXITOSO',
@@ -162,7 +179,7 @@ export const RestaurantesAdmin = () => {
           </div>
           <div id='div-cards'>
             {restaurantes.map(restaurante => (
-              <div className='card-info d-flex' key={restaurante.restaurante_id}>
+              <div className='mb-5 d-flex' key={restaurante.restaurante_id}>
                 <div className='w-75 h-100'>
                   <div id='cuerpo-card' className='w-100 h-100'>
                     <h4 className='text-center mt-2 mb-4'>{restaurante.restaurante_nombre}</h4>

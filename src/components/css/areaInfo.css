@@ -47,3 +47,8 @@
     gap: 2rem;
     margin-bottom: 20px;
 }
+
+#contenedor-pedidos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
