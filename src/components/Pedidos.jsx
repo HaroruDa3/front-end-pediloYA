@@ -6,11 +6,9 @@ export const Pedidos = () => {
   const [pedidos, setPedidos] = useState([]);
 
   useEffect(() => {
-    // Hacer la solicitud a la API
     axios.get('http://localhost:8080/api/v1/detalle-pedido')
       .then(response => {
         // Organizar los datos por ID de pedido
-        console.log(response.data);
         const groupedPedidos = groupByPedidoId(response.data);
         setPedidos(groupedPedidos);
       })
