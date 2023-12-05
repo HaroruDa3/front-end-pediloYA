@@ -186,38 +186,38 @@ export const RestaurantesAdmin = () => {
     </section>
     
 
-<div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="registroModalLabel">Registro</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div className="modal fade" id="registroModal" tabIndex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="registroModalLabel">Registro</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
+      <div className="modal-body">
         <form>
-          <div class="mb-3">
-            <label for="nombreCompleto" class="form-label">Nombre Restaurante</label>
-            <input type="text" class="form-control" name="nombre_completo" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label for="nombreCompleto" className="form-label">Nombre Restaurante</label>
+            <input type="text" className="form-control" name="nombre_completo" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="dni" class="form-label">RTN</label>
-            <input type="text" class="form-control" name="dni" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label for="dni" className="form-label">RTN</label>
+            <input type="text" className="form-control" name="dni" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" name="correoElectronico" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label for="correoElectronico" className="form-label">Correo Electrónico</label>
+            <input type="email" className="form-control" name="correoElectronico" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="contrasenia" class="form-label">Contraseña</label>
-            <input type="password" class="form-control"  name="contrasenia" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label for="contrasenia" className="form-label">Contraseña</label>
+            <input type="password" className="form-control"  name="contrasenia" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="confirmaContrasenia" class="form-label">Confirme su Contraseña</label>
-            <input type="password" class="form-control" id="confirmaContrasenia" placeholder="Confirme su Contraseña" required/>
+          <div className="mb-3">
+            <label for="confirmaContrasenia" className="form-label">Confirme su Contraseña</label>
+            <input type="password" className="form-control" id="confirmaContrasenia" placeholder="Confirme su Contraseña" required/>
           </div>
 
             <div className='mb-3'>
@@ -278,9 +278,9 @@ export const RestaurantesAdmin = () => {
 
         </form>
       </div>
-      <div class="modal-footer">
+      <div className="modal-footer">
         <button onClick={handleRegistro} type="submit" class="btn btn-primary" data-bs-dismiss="modal">Registrar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" claclassNamess="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

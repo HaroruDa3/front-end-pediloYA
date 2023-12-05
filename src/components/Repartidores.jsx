@@ -139,7 +139,7 @@ export const Repartidores = () => {
           showConfirmButton: true
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload();
+            obtenerRepartidores()
           }
         });
       }else{
@@ -148,7 +148,6 @@ export const Repartidores = () => {
           showConfirmButton: true
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload()
           }
         });
       }
