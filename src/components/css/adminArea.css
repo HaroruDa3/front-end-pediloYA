@@ -4,6 +4,7 @@
     height: 100vh;
     background-color: aliceblue;
     position: fixed;
+    box-shadow: 1px 1px 21px #00000061;
 }
 #renderOpciones{
     margin-left: 25vh;
