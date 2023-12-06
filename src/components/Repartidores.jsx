@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+const Swal = window.Swal;
 export const Repartidores = () => {
   const [departamentos, setDepartamentos] = useState([]);
   const [ciudades, setCiudades] = useState([]);
@@ -187,29 +187,29 @@ export const Repartidores = () => {
             </div>
             <div className="modal-body">
             <form>
-          <div class="mb-3">
-            <label for="nombreCompleto" class="form-label">Nombre Repartidor</label>
-            <input type="text" class="form-control" name="nombre_completo" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label  className="form-label">Nombre Repartidor</label>
+            <input type="text" className="form-control" name="nombre_completo" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="dni" class="form-label">DNI</label>
-            <input type="text" class="form-control" name="dni" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label className="form-label">DNI</label>
+            <input type="text" className="form-control" name="dni" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" name="correoElectronico" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label className="form-label">Correo Electrónico</label>
+            <input type="email" className="form-control" name="correoElectronico" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="contrasenia" class="form-label">Contraseña</label>
-            <input type="password" class="form-control"  name="contrasenia" onChange={handleInputChange} required/>
+          <div className="mb-3">
+            <label  className="form-label">Contraseña</label>
+            <input type="password" className="form-control"  name="contrasenia" onChange={handleInputChange} required/>
           </div>
 
-          <div class="mb-3">
-            <label for="confirmaContrasenia" class="form-label">Confirme su Contraseña</label>
-            <input type="password" class="form-control" id="confirmaContrasenia" placeholder="Confirme su Contraseña" required/>
+          <div className="mb-3">
+            <label  className="form-label">Confirme su Contraseña</label>
+            <input type="password" className="form-control" id="confirmaContrasenia" placeholder="Confirme su Contraseña" required/>
           </div>
 
             <div className='mb-3'>

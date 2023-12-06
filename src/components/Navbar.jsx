@@ -64,10 +64,10 @@ export const Navbar = () => {
           </div>
           <div id='opciones-navbar'>
             <div>
-              <p>Inicio</p>
+              <p>{nameUsuario}</p>
             </div>
             <div className='h-75'>
-              <img className='h-100' src={OptionIcon} alt="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
+              <img className='h-75' src={OptionIcon} alt="" data-bs-toggle="modal" data-bs-target="#staticBackdrop"/>
             </div>
           </div>
         </div>

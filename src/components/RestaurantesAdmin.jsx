@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+const Swal = window.Swal;
 
 export const RestaurantesAdmin = () => {
   const [departamentos, setDepartamentos] = useState([]);

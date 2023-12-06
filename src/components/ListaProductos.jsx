@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import hamburguesa from './img/burguer.jpg';
 import carrito from './img/car-wb.png';
 import carritoVacio from './img/carrito-vacio.png';
 import './css/cards.css';
+const Swal = window.Swal;
 
 export const ListaProductos = () => {
   const [productos, setProductos] = useState([]);
@@ -129,6 +130,7 @@ export const ListaProductos = () => {
         }).then((result) => {
           if (result.isConfirmed) {
           localStorage.removeItem('carrito')
+          window.location.reload();
           }
         });
       } else if (result.isDenied) {

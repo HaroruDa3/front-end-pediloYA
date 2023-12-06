@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import{ useState } from 'react';
 import './css/Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -27,14 +27,14 @@ export const Login = () => {
     }else{
         try {
             const response = await axios.post(url, dataLogin);
-            if(response.data.rol=='Cliente'){
-              localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
-              localStorage.setItem('id', response.data.id)
-              navegar('/pediloYa');
-            } else if(response.data.rol=='admin'){
+            if(response.data.rol=='admin'){
               localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
               localStorage.setItem('id', response.data.id)
               navegar('/admin');
+            } else{
+              localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
+              localStorage.setItem('id', response.data.id)
+              navegar('/pediloYa');
             }
            
         } catch (error) {
