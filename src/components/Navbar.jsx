@@ -4,6 +4,7 @@ import axios from 'axios';
 import Logo from '/public/icono-pedidosYA!.jpg';
 import OptionIcon from '/public/option-icon.png'; 
 import { useNavigate } from 'react-router-dom';
+const Swal = window.Swal;
 
 export const Navbar = () => {
   const [ubicacion, setUbicaion] = useState('');
@@ -43,8 +44,12 @@ export const Navbar = () => {
 
     axios.post(`http://localhost:8080/api/v1/usuarios/${localStorage.getItem('id')}/cargar-imagen`, formData)
       .then(response => {
-        console.log('Imagen cargada exitosamente', response.data);
+        Swal.fire({
+          title: "Actualizacion exitosa",
+          icon: "success"
+        });
         profile = response.data;
+        window.location.reload()
       })
       .catch(error => {
         console.error('Error al cargar la imagen', error);

@@ -12,21 +12,30 @@ export const Pedidos = () => {
     try {
       const pedidosAsignados = await axios.get('http://localhost:8080/api/v1/pedidos-asignados');
       const uniquePedidosAsignados = {};
-      pedidosAsignados.data.forEach((pedido) => {
+  
+      for (const pedido of pedidosAsignados.data) {
+        const result = await axios.get(`http://localhost:8080/api/v1/colonias/${pedido.direccion}`);
+        console.log(result.data);
+  
         const { pedido_asignado_id, producto_nombre, total, ...rest } = pedido;
+        const direccion = result.data.colonia_nombre + ', ' + result.data.referencia;
+  
         if (uniquePedidosAsignados[pedido_asignado_id]) {
+          uniquePedidosAsignados[pedido_asignado_id].direccion += `, ${direccion}`;
           uniquePedidosAsignados[pedido_asignado_id].producto_nombre += `, ${producto_nombre}`;
         } else {
-          uniquePedidosAsignados[pedido_asignado_id] = { ...rest, pedido_asignado_id, producto_nombre, total: parseFloat(total).toFixed(2) };
+          uniquePedidosAsignados[pedido_asignado_id] = { ...rest, pedido_asignado_id, producto_nombre, total: parseFloat(total).toFixed(2), direccion };
         }
-      });
-      const pedidosAsignadosUnicos = Object.values(uniquePedidosAsignados);
+      }
   
+      const pedidosAsignadosUnicos = Object.values(uniquePedidosAsignados);
       setPedidoAsignado(pedidosAsignadosUnicos);
+      console.log(pedidoAsignado);
     } catch (error) {
       console.error('Error al obtener pedidos asignados:', error);
     }
   };
+  
   
 
   useEffect(() => {
@@ -220,7 +229,7 @@ export const Pedidos = () => {
                       <div className="w-75">
                         <div>Repartidor: {pedido.repartidor_nombre}</div>
                         <div>Producto: {pedido.producto_nombre}</div>
-                        <div>Total: {pedido.total} USD</div>
+                        <div>Total: {pedido.total}lps</div>
                         <div>Cliente: {pedido.cliente}</div>
                         <div>Dirección: {pedido.direccion}</div>
                         <div>Fecha de Emisión: {pedido.fecha_emision || 'No disponible'}</div>
