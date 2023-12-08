@@ -15,8 +15,6 @@ export const Pedidos = () => {
   
       for (const pedido of pedidosAsignados.data) {
         const result = await axios.get(`http://localhost:8080/api/v1/colonias/${pedido.direccion}`);
-        console.log(result.data);
-  
         const { pedido_asignado_id, producto_nombre, total, ...rest } = pedido;
         const direccion = result.data.colonia_nombre + ', ' + result.data.referencia;
   
@@ -30,7 +28,6 @@ export const Pedidos = () => {
   
       const pedidosAsignadosUnicos = Object.values(uniquePedidosAsignados);
       setPedidoAsignado(pedidosAsignadosUnicos);
-      console.log(pedidoAsignado);
     } catch (error) {
       console.error('Error al obtener pedidos asignados:', error);
     }
@@ -126,15 +123,11 @@ export const Pedidos = () => {
   };
 
   const asignarPedido = async (id) => {
-    console.log(pedidoSelect);
-    console.log(id);
-
     const data = {
       pedido_id: parseInt(pedidoSelect),
       repartidor_id: id,
       entregado: 0,
     };
-    console.log(data);
 
     try {
       const url = 'http://localhost:8080/api/v1/pedidos_asignados';
@@ -145,7 +138,6 @@ export const Pedidos = () => {
         confirmButtonText: 'OK',
       }).then(async (result) => {
         if (result.isConfirmed) {
-          console.log('Nice');
           obtenerPedidosAsignados();
           setPedidoSelect('');
         }
