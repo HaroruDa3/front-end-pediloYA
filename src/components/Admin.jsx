@@ -10,7 +10,7 @@ import IconRepartidor from './img/icono-repartidor.png';
 import IconLista from './img/icono-listas.png';
 import IconPedidos from './img/icono-pedidos.png';
 import IconLogOut from './img/icono-cerrar-sesion.png';
-import { Pedidos } from './pedidos';
+import { Pedidos } from './Pedidos';
 
 export const Admin = () => {
   const [opcionSeleccionada, setOpcionSeleccionada] = useState('restaurantes');

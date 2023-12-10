@@ -18,6 +18,7 @@ export const Navbar = () => {
         
         setUbicaion(response.data.direccion || '');
         setnameUsuario(response.data.nombre_Completo ||'') 
+        localStorage.setItem('nombre_usr',nameUsuario)
       } catch (error) {
         console.error('Error al obtener información del usuario:', error);
       }
@@ -63,7 +64,7 @@ export const Navbar = () => {
           <div className='d-flex' >
             <img src={Logo} alt="" />
             <div id='info-entrega'>
-              <span>Enviar a: </span>
+              <span>Dirección: </span>
               <span>{ubicacion}</span>
             </div>
           </div>

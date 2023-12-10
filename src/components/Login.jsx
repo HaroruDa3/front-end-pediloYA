@@ -2,6 +2,7 @@ import{ useState } from 'react';
 import './css/Login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const Swal = window.Swal;
 
 const url = 'http://localhost:8080/api/v1/usuarios/login';
 
@@ -31,7 +32,11 @@ export const Login = () => {
               localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
               localStorage.setItem('id', response.data.id)
               navegar('/admin');
-            } else{
+            } else if(response.data.rol=='Repartidor'){
+              localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
+              localStorage.setItem('id', response.data.id)
+              navegar('/repartidor');
+            }else{
               localStorage.setItem('profile', response.data.rutaCarpetaImagenes)
               localStorage.setItem('id', response.data.id)
               navegar('/pediloYa');
