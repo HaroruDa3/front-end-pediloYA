@@ -25,7 +25,7 @@ export const PedidosCliente = () => {
 
   const getPedidosAsignados = async () => {
     try {
-      const url = "http://localhost:8080/api/v1/pedidos";
+      const url = "http://localhost:8080/api/v1/pedidos-asignados";
       const response = await axios.get(url);
       let pedidosCliente = response.data.filter(
         (pedido) => pedido.cliente_id === idCliente
