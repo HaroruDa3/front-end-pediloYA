@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+const Swal = window.Swal;
 import { useNavigate } from 'react-router-dom';
 import { RestaurantesAdmin } from './RestaurantesAdmin';
 import { Repartidores } from './Repartidores';

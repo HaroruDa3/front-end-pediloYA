@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './css/SignIn.css';
 import { useNavigate } from 'react-router-dom';
 import ArrowBack from '../assets/arrow-back.png';
 import axios from 'axios';
-
+const Swal = window.Swal;
 export const SignIn = () => {
   const navegar = useNavigate();
   const [departamentos, setDepartamentos] = useState([]);
