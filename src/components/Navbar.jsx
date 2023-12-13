@@ -13,19 +13,29 @@ export const Navbar = () => {
   useEffect(() => {
     const infoUsuario = async () => {
       try {
-        const url = `http://localhost:8080/api/v1/usuarios/${parseInt(localStorage.getItem('id'))}`;
-        const response = await axios.get(url);
-        
-        setUbicaion(response.data.direccion || '');
-        setnameUsuario(response.data.nombre_Completo ||'') 
-        localStorage.setItem('nombre_usr',nameUsuario)
+        if(localStorage.getItem('id')){
+          const url = `http://localhost:8080/api/v1/usuarios/${parseInt(localStorage.getItem('id'))}`;
+          const response = await axios.get(url);
+          setUbicaion(response.data.direccion || '');
+          setnameUsuario(response.data.nombre_Completo ||'') 
+          localStorage.setItem('nombre_usr',nameUsuario)
+        }else{
+          document.getElementById('div-img-info').classList.add('d-none')
+          document.getElementById('div-op-change-pass').classList.add('d-none')
+          const restaurante = JSON.parse(localStorage.getItem('restaurante'))
+          const url = `http://localhost:8080/api/v1/colonias/${restaurante.direccion}`;
+          const response = await axios.get(url);
+          setUbicaion(response.data.colonia_nombre+' - '+response.data.referencia);
+          setnameUsuario(restaurante.restaurante_nombre) 
+        }
+       
       } catch (error) {
         console.error('Error al obtener información del usuario:', error);
       }
     };
 
     infoUsuario();
-  }, []);
+  }, [nameUsuario]);
 
   const navegar = useNavigate();
   let profile = localStorage.getItem('profile');
@@ -33,6 +43,8 @@ export const Navbar = () => {
   const cerrarSesion = () => {
     localStorage.removeItem('id');
     localStorage.removeItem('carrito');
+    localStorage.removeItem('profile');
+    localStorage.removeItem('nombre_usr');
     navegar('/');
     window.location.reload();
   };
@@ -89,16 +101,20 @@ export const Navbar = () => {
       </div>
       <div className="modal-body">
         <h5 className='text-center fw-bold mb-3'>{nameUsuario}</h5>
-        <div className='img-div'>
+        <div id='div-img-info' className='img-div'>
             <div>
               <img className='img-modal' src={`http://localhost:8080/uploads/profile/${profile}`} alt="" />
             </div>
         </div>
+        <div id='div-op-change-pass'> 
         <label className='mx-2 mb-1'>Cambiar Imagen de perfil</label>
         <input className='form-control mb-2' type="file" id="inputFile" accept="image/*" />
         <div className='w-100 d-flex justify-content-center mb-5'>
           <button className='btn btn-success' onClick={cambiarProfile}>Cambiar imagen de perfil</button>
         </div>
+
+        </div>
+       
         <div className='w-100 d-flex justify-content-center'>
             <button className='btn btn-danger' onClick={cerrarSesion} type="button">Cerrar Sesion</button>
         </div>

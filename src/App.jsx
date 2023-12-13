@@ -4,6 +4,7 @@ import {SignIn} from './components/SignIn'
 import { MainPage } from './components/MainPage'
 import { Admin } from './components/Admin'
 import { AreaRepartidor } from './components/AreaRepartidor'
+import {AreaRestaurante}from './components/AreaRestaurante'
 
 export const App = () => {
   return (
@@ -14,6 +15,7 @@ export const App = () => {
           <Route path='/signIn' element={ <SignIn/> } />
           <Route path='/pediloYa' element={ <MainPage/> } />
           <Route path='/repartidor' element={ <AreaRepartidor/> } />
+          <Route path='/restaurante' element={ <AreaRestaurante/> } />
           <Route path='/admin/*' element={ <Admin/> } />
           
         </Routes>
