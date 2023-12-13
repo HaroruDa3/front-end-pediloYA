@@ -72,7 +72,16 @@ export const AreaRepartidor = () => {
     pedidosRepartidor();
   }, [id_repartidor, pedidos, reloadPedidos]);
 
-  const marcarPedidoEntregado = async (id) => {
+  const marcarPedidoEntregado = async (id, pedido_id) => {
+    console.log(id)
+    console.log(pedido_id)
+    const data={
+      pedido_asignado_id: id,
+        pedido_id: pedido_id,
+        repartidor_id: parseInt(localStorage.getItem('id')),
+        entregado: true
+    
+    }
     const url = `http://localhost:8080/api/v1/pedidos_asignados/${id}`;
 
     try {
@@ -84,7 +93,7 @@ export const AreaRepartidor = () => {
       });
 
       if (result.isConfirmed) {
-        await axios.put(url); // Actualiza el pedido como entregado en la API
+        await axios.put(url,data); // Actualiza el pedido como entregado en la API
 
         Swal.fire({
           title: 'Pedido marcado como entregado',
@@ -120,7 +129,7 @@ export const AreaRepartidor = () => {
                     <div className="w-75">
                       <button
                         className="btn btn-success"
-                        onClick={() => marcarPedidoEntregado(pedido.asignado)}
+                        onClick={() => marcarPedidoEntregado(pedido.asignado, pedido.pedido_id)}
                         type="button"
                       >
                         Pedido Entregado
