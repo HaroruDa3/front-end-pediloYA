@@ -86,7 +86,7 @@ export const AreaRepartidor = () => {
 
     try {
       const result = await Swal.fire({
-        title: `¿Seguro que quieres marcar como entregado el pedido no. ${id}?`,
+        title: `¿Seguro que quieres marcar como entregado el pedido no. ${pedido_id}?`,
         showDenyButton: true,
         confirmButtonText: 'Sí, marcar como entregado',
         denyButtonText: 'No, cancelar',
@@ -153,13 +153,6 @@ export const AreaRepartidor = () => {
                   <p className="mb-1">Direccion: {pedido.direccion}</p>
                   <p className="mb-4">Referencia: {pedido.referencia}</p>
                   <p>Total: {pedido.total}lps</p>
-                  <div className="d-flex justify-content-center">
-                    <div className="w-75">
-                      <button className="btn btn-success" type="button">
-                        Pedido Entregado
-                      </button>
-                    </div>
-                  </div>
                 </div>
               ))}
             </div>

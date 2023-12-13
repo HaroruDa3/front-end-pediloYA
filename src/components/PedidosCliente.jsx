@@ -7,9 +7,20 @@ export const PedidosCliente = () => {
   const [pedidoAsignado, setPedidoAsignado] = useState([]);
   const [pedidos, setPedidos] = useState([]);
   const [pedidosProducto, setpeProducto] = useState([]);
-  const [reloadPedidos, setReloadPedidos] = useState(false); // Nuevo estado
+  const [reloadPedidos, setReloadPedidos] = useState(false);
+  const [pedidosEntregados,setEntregados]= useState([])
 
   const idCliente = parseInt(localStorage.getItem('id'));
+
+useEffect(()=>{
+  const pedidosEntregados = async () =>{
+    const url=`http://localhost:8080/api/v1/pedidos-entregados`;
+    const response = (await axios.get(url)).data;
+    const data= response.filter((pedido) => pedido.cliente==localStorage.getItem('nombre_usr'));
+    setEntregados(data)
+  }
+  pedidosEntregados()
+},[])
 
   useEffect(() => {
     const getPedidos = async () => {
@@ -19,14 +30,19 @@ export const PedidosCliente = () => {
         let pedidosCliente = response.data.filter(
           (pedido) => pedido.cliente_id === idCliente
         );
-        setPedidos(pedidosCliente);
+
+       const pedidosNoEntregados = pedidosCliente.filter(
+            (pedidoCliente) => !pedidosEntregados.some((pedidoEntregado) => pedidoEntregado.pedido_id === pedidoCliente.pedido_id)
+);  
+
+        setPedidos(pedidosNoEntregados);
       } catch (error) {
         console.error("Error al obtener pedidos:", error);
       }
     };
 
     getPedidos();
-  }, [idCliente, reloadPedidos]); // Agregamos reloadPedidos a las dependencias
+  }, [idCliente, reloadPedidos,pedidosEntregados]); // Agregamos reloadPedidos a las dependencias
 
   const borrarPedido = async (id) => {
     try {
@@ -65,6 +81,7 @@ export const PedidosCliente = () => {
         const response = await axios.get(url);
         let products = [];
         let productsAsig = [];
+        console.log(pedidos)
         for (const pedido of pedidos) {
           let data = response.data.filter((producto) => producto.pedido_id === pedido.pedido_id);
           let detalle = {
@@ -90,6 +107,7 @@ export const PedidosCliente = () => {
             products.push(detalle);
           }
         }
+        console.log(productsAsig)
         setpeProducto(products);
         setPedidoAsignado(productsAsig);
       } catch (error) {

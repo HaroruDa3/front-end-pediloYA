@@ -63,10 +63,6 @@ export const Admin = () => {
               <span>PEDIDOS</span>
               <img src={IconPedidos} alt="" />
             </div>
-            <div onClick={() => setOpcionSeleccionada('historial')} className='opciones-admin'>
-              <span>HISTORIAL</span>
-              <img src={IconLista} alt="" />
-            </div>
             <div onClick={cerrarSesion} id='cerrarSesion' className='opciones-admin'>
               <span>CERRAR SESION</span>
               <img src={IconLogOut} alt="" />
